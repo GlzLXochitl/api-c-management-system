@@ -8,7 +8,7 @@ This repository contains the Credit Management System (CMS) API. The API is desi
 
 The Credit Management System (CMS) is a broader project composed of this API and another component called "react-c-management-system", which is responsible for the user interface and data synchronization, among other functions. Together, these two repositories form a complete application that allows to monitor and manage more efficiently the recording of credits by each student during their extracurricular activities, avoiding as much as possible the loss of information and facilitating an efficient management through an intuitive user interface and a solid backend infrastructure.
 
-[Repository of "react-c-management-system": ](https://github.com/GlzLXochitl/react-c-management-system.git)
+[Repository of "react-c-management-system" ](https://github.com/GlzLXochitl/react-c-management-system.git)
 
 ## Dependencies
 
