@@ -26,6 +26,8 @@ module.exports = (sequelize, Sequelize) => {
       timestamps: false,
       freezeTableName: true,
       tableName: "user_type",
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
     }
   );
   return UserType;

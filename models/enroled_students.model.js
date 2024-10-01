@@ -41,6 +41,8 @@ module.exports = (sequelize, Sequelize) => {
       timestamps: false,
       freezeTableName: true,
       tableName: "enroled_students",
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
     }
   );
   return EnroledStudents;

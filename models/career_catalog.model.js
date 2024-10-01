@@ -30,6 +30,8 @@ module.exports = (sequelize, Sequelize) => {
       timestamps: false,
       freezeTableName: true,
       tableName: "career_catalog",
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
     }
   );
   return CareerCatalog;

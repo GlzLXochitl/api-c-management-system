@@ -67,9 +67,11 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
-      timestamps: false,
+      timestamps: true,
       freezeTableName: true,
       tableName: "user",
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
     }
   );
   return User;

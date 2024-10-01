@@ -69,6 +69,8 @@ module.exports = (sequelize, Sequelize) => {
       timestamps: false,
       freezeTableName: true,
       tableName: "courses",
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
     }
   );
   //course_catalog.hasMany(course, { foreignKey: 'course_name_id' });

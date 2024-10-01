@@ -3,7 +3,6 @@ const db = require("../models/db");
 const Course = db.courses;
 const Course_Catalog = db.course_catalog;
 const Users = db.users;
-const Quarter_catalog = db.quarter_catalog;
 
 // Validate that the employee exist to delete/edit/partial edit
 const validateCourseName = (courseName) => {

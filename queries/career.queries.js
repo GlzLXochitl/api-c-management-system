@@ -1,6 +1,7 @@
 const db = require("../models/db");
 
 const Careers = db.career;
+const Users = db.users;
 
 // Validate that the career exist to delete/edit/partial edit
 const validateCareer = (career) => {
@@ -103,6 +104,22 @@ const getCareerByName = async (req, res) => {
   }
 };
 
+// 7. career by user id
+const getCareerByUserId = async (req, res) => {
+  try {
+    const ID = req.params.id;
+    const getUser = await Users.findOne({
+      where: {
+        id: ID,
+      },
+      attributes: ['career'],
+    });
+    return res.status(200).json(getUser);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getAllCareers,
   getCareerById,
@@ -110,4 +127,5 @@ module.exports = {
   updateCareer,
   deleteCareerByName,
   getCareerByName,
+  getCareerByUserId,
 };

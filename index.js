@@ -4,8 +4,8 @@ const app = express(); // create an express app
 const bodyParser = require("body-parser"); // is a middleware that allows you to handle the data that is sent to the server
 app.use(bodyParser.json()); // use the body-parser middleware
 
-const cors = require("cors");
-app.use(cors());
+const cors = require("cors"); // is a middleware that allows you to handle the data that is sent to the server
+app.use(cors()); // use the cors middleware
 
 const {
   getAllCourses,
@@ -52,10 +52,12 @@ const {
   updateCareer,
   deleteCareerByName,
   getCareerByName,
+  //getCareerByUserId, 
 } = require("./queries/career.queries.js");
 const {
   getAllStudentsEnroledInACourse,
   enrolleStudent,
+  //getCoursesByStudentId,
 } = require("./queries/enrolled_students.queries.js");
 
 /**
@@ -141,6 +143,7 @@ app.get("/api/open_courses/:open", (req, res) => {
 app.get("/api/courses_names/:active", (req, res) => {
   getCoursesNames(req, res);
 });
+
 // Endpoints for course_catalog ***************
 
 //Get all courses names
@@ -281,7 +284,7 @@ app.delete("/api/careerName/:name", (req, res) => {
 
 // Endpoints for enroled_students ******************
 
-//Get all students enroled in a course
+// Get all students enroled in a course
 app.get("/api/students_enroled_in_a_course/:course_id", (req, res) => {
   getAllStudentsEnroledInACourse(req, res);
 });
