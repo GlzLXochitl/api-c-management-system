@@ -1,12 +1,38 @@
 const express = require("express"); //import express
-const app = express(); // create an express app
-
 const bodyParser = require("body-parser"); // is a middleware that allows you to handle the data that is sent to the server
+const { PORT } = require ('./config.js');
+//const jwt = require('jsonwebtoken'); //*
+const cookieParser = require('cookie-parser'); //*
+const cors = require('cors');
+
+const app = express(); // create an express app
+//const SECRET_KEY = 'your_secret_key'; //*
+
 app.use(bodyParser.json()); // use the body-parser middleware
+app.use(cookieParser()); //*
 
-const cors = require("cors"); // is a middleware that allows you to handle the data that is sent to the server
-app.use(cors()); // use the cors middleware
+const corsOptions = {
+  origin: 'http://localhost:3000', // Reemplaza con el origen de tu aplicación cliente
+  credentials: true, // Permitir el envío de cookies y encabezados de autorización
+};
 
+app.use(cors(corsOptions));
+
+//const authRoutes = require('./routes/authRoutes.js');
+//const protectedRoutes = require('./routes/protectedRoutes.js');
+
+// Middleware para procesar JSON
+//app.use(express.json());
+
+// Añadir rutas de autenticación
+//app.use('/api', authRoutes);
+//app.use('/api/protected', protectedRoutes); // Ejemplo de rutas protegidas
+
+const {
+  userAuth,
+  //userLogout,
+  checkAuth
+} = require("./queries/auth.queries.js");
 const {
   getAllCourses,
   getCourseById,
@@ -60,6 +86,11 @@ const {
   //getCoursesByStudentId,
 } = require("./queries/enrolled_students.queries.js");
 
+// Endpoint de prueba de conexión
+app.get("/api/test-connection", (req, res) => {
+  res.status(200).json({ message: "Connection successful" });
+});
+
 /**
  * @swagger
  * components:
@@ -90,6 +121,16 @@ const {
  *            description:
  *        :
  */
+
+// Endpoints for auth ******************
+app.post('/api/login', (req, res) => {
+  userAuth(req, res);
+});
+
+// Endpoint para verificar la autenticación
+app.get("/api/check-auth", (req, res) => {
+  checkAuth(req, res);
+});
 
 // Endpoints for courses ******************
 
@@ -295,5 +336,6 @@ app.post("/api/enrolleStudent", (req, res) => {
 });
 
 // Start the server
-const port = process.env.PORT || 3001; // Use environment variable for port or default to 3000
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
